@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+
+    <title>Conversor de números romanos</title>
+  </head>
+  <body>
+    
+
+    <div class="container" >
+
+        <h1>Conversor de números romanos para arábicos</h1>
+        <br>
+        <div class="input-group">
+            
+            <input type="text" id="romanos" class="form-control" placeholder="Digite um número romano">
+            <div class="input-group-btn"></div>
+            <button onclick="converterRomanoParaDecimal()" class="btn btn-primary btn-sm">Converter</button>
+            </div>
+        
+       
+        <br>
+        <div class="resultado">
+            <h3>Resultado em arábicos:</h3>
+            <p id="resultadoDecimal"></p>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+    <!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+      function converterRomanoParaDecimal() {
+        const romanNumber = document.getElementById('romanos').value;
+        const decimalNumber = romanToDecimal(romanNumber);
+        document.getElementById('resultadoDecimal').textContent = decimalNumber;
+      }
+
+      function romanToDecimal(roman) {
+        const romanNumerals = {
+          I: 1,
+          V: 5,
+          X: 10,
+          L: 50,
+          C: 100,
+          D: 500,
+          M: 1000
+        };
+
+        let result = 0;
+
+        for (let i = 0; i < roman.length; i++) {
+          const currentNum = romanNumerals[roman[i]];
+          const nextNum = romanNumerals[roman[i + 1]];
+
+          if (nextNum && currentNum < nextNum) {
+            result += nextNum - currentNum;
+            i++;
+          } else {
+            result += currentNum;
+          }
+        }
+
+        return result;
+      }
+    </script>
+
+    
+  </body>
+</html>
